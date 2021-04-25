@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30517.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashtilCagesMap", "HashtilCagesMap\HashtilCagesMap.csproj", "{6786468E-9249-4DEC-95FA-4C7C2B344AEA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HashtilSetUp", "HashtilSetUp\HashtilSetUp.vdproj", "{5EF771D7-4920-4BB3-85E6-81871D00B6B8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6786468E-9249-4DEC-95FA-4C7C2B344AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6786468E-9249-4DEC-95FA-4C7C2B344AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6786468E-9249-4DEC-95FA-4C7C2B344AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6786468E-9249-4DEC-95FA-4C7C2B344AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF771D7-4920-4BB3-85E6-81871D00B6B8}.Debug|Any CPU.ActiveCfg = Debug
+		{5EF771D7-4920-4BB3-85E6-81871D00B6B8}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB3ACCE2-BCFE-4FD7-B5E9-D98E226D0B80}
+	EndGlobalSection
+EndGlobal

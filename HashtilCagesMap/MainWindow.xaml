@@ -1,0 +1,513 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+
+        xmlns:local="clr-namespace:HashtilCagesMap"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="HashtilCagesMap.MainWindow"
+        mc:Ignorable="d"
+        Title="השתיל - מעקב כלובים"  Icon="Picture/hashtil_logo3.png" WindowState="Maximized" Background="#FF9CD382" >
+
+    <TabControl>
+        <TabItem Header="נהגים" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
+                <Button Content="רענן" Grid.Column="1"
+                        Grid.Row="0"
+                HorizontalAlignment="Right" 
+                
+                VerticalAlignment="Center"
+                Height="20"
+                Width="98" Background="#FF62E23D" Click="Button_Click" Grid.RowSpan="1" Margin="288,10,5,0"/>
+                <TextBlock IsEnabled="False" Name="userlevel" Foreground="{x:Null}"/>
+                <TextBox
+                 HorizontalAlignment="Left"                                           
+                 Text=""                  
+                 VerticalAlignment="Center" 
+                 Width="98"
+                 Height="20"
+                 x:Name="TBox" TextChanged="TBox_TextChanged" Margin="5,10,288,0" Grid.Column="1" Grid.Row="0" 
+                 />
+                <m:Map x:Name="myMap" CredentialsProvider="o9mvyQHetR5vdjvJFfvH~0N7Vbu9pXf_crkxky9emXw~At7K8HtpQL9HqnppRaaaw5YZrFlUqe52NViFErhv9UaNJ-ZFR2Us-sFITuLxtrnd"
+               Mode="road"
+               Grid.Column="0"
+               Grid.Row="1"
+               Grid.RowSpan="2"
+               Center="31.375850, 34.623243" ZoomLevel="10"
+                       Margin="0,0,0,0" />
+                <Label Content="מחובר כ:" FlowDirection="RightToLeft" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center" 
+                       HorizontalAlignment="Right"/>
+                <TextBlock Text="" Name="txtblkmap" FlowDirection="RightToLeft" FontSize="14" Grid.Column="0" VerticalAlignment="Center" 
+                           HorizontalAlignment="Right" Margin="0,0,100,0"/>
+                <syncfusion:SfDataGrid Name="sfdg"  AllowTriStateSorting="True" Grid.RowSpan="2" ShowGroupDropArea="True"  
+                                       ColumnSizer="AutoWithLastColumnFill" FlowDirection="RightToLeft" Grid.Column="1" 
+                                       AllowDraggingRows="True"
+                                        AllowDrop="True"
+                                       Grid.Row="1" ItemsSource="{Binding CageAudit}" AllowFiltering="True" Margin="0,0,10,0" AllowResizingColumns="True" AllowDraggingColumns="True">
+                    <syncfusion:SfDataGrid.Columns>
+                        <syncfusion:GridTextColumn MappingName="CxId" 
+                                   HeaderText="מזהה לקוח"
+                                   TextAlignment="Left"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridTextColumn MappingName="Cx" 
+                                   HeaderText="לקוח"
+                                   TextAlignment="Left"  
+                                   VerticalAlignment="Center" 
+                                              />
+                        <syncfusion:GridTextColumn MappingName="Sector" 
+                                   HeaderText="איזור"
+                                   TextAlignment="Center"  
+                                                   
+                                   VerticalAlignment="Center" 
+                                              />
+                        <syncfusion:GridDateTimeColumn MappingName="Date" 
+                                   HeaderText="תאריך"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"
+                                               Pattern="ShortDate"/>
+                        <syncfusion:GridDateTimeColumn MappingName="Time" 
+                                   HeaderText="שעה"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" Pattern="ShortTime"/>
+                        <syncfusion:GridTextColumn MappingName="Contractor" 
+                                   HeaderText="מבצע"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="User" 
+                                   HeaderText="נהג"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="Status" 
+                                   HeaderText="מצב"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="NumOfCage" 
+                                   HeaderText="מס כלובים"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" />
+                        <syncfusion:GridTextColumn MappingName="CagePrice" 
+                                   HeaderText="מחיר לכלוב"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridCurrencyColumn CurrencyDecimalDigits="1" CurrencySymbol="₪"  MappingName="TotalCageCost" 
+                                   HeaderText="סהכ לאיסוף" 
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridTextColumn MappingName="Lan" 
+                                   HeaderText="קו רוחב"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridTextColumn MappingName="Lon" 
+                                   HeaderText="קו אורך"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+
+
+
+
+                    </syncfusion:SfDataGrid.Columns>
+
+
+
+                    <syncfusion:SfDataGrid.TableSummaryRows >
+                        <syncfusion:GridTableSummaryRow Title="  סהכ פריקות ו/או איסופים: (כללי): {NumOfCage}   כמות כלובים: {TotalCageSum}   "  ShowSummaryInRow="True" >
+                            <syncfusion:GridSummaryRow.SummaryColumns >
+
+
+                                <syncfusion:GridSummaryColumn Name="NumOfCage"
+                                                Format="'{Count:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="CountAggregate" />
+                                <syncfusion:GridSummaryColumn Name="TotalCageSum"
+                                                Format="'{Sum:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="Int32Aggregate" />
+
+                            </syncfusion:GridSummaryRow.SummaryColumns>
+                        </syncfusion:GridTableSummaryRow>
+
+                    </syncfusion:SfDataGrid.TableSummaryRows>
+                    <syncfusion:SfDataGrid.GroupSummaryRows>
+                        <syncfusion:GridSummaryRow Title="     מס איסופים ו/או פריקות: {NumOfCage}   כמות כלובים: {TotalCageSum}   "  ShowSummaryInRow="True">
+                            <syncfusion:GridSummaryRow.SummaryColumns>
+
+                                <syncfusion:GridSummaryColumn Name="NumOfCage"
+                                                Format="'{Count:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="CountAggregate" />
+                                <syncfusion:GridSummaryColumn Name="TotalCageSum"
+                                                Format="'{Sum:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="Int32Aggregate" />
+                            </syncfusion:GridSummaryRow.SummaryColumns>
+                        </syncfusion:GridSummaryRow>
+
+                    </syncfusion:SfDataGrid.GroupSummaryRows>
+                </syncfusion:SfDataGrid>
+                <syncfusion:SfBusyIndicator Name="busyrefresh" Content="" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="0" 
+                                    VerticalAlignment="Center" Cursor="AppStarting" AnimationType="Cupertino" Foreground="#FF4CCD10"/>
+                <Button Content="הדפס" HorizontalAlignment="Left" 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Name="btnprint"
+                        Margin="5,0,0,0" VerticalAlignment="Center" Width="75" Click="btnprint_Click"/>
+                <Button Content="שינוי תצוגת מפה" HorizontalAlignment="Left" 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Name="btnmapmode"
+                        Margin="200,0,0,0" VerticalAlignment="Center" Width="95" Click="btnchange_map_mode" Background="#FFB8D1F5" BorderBrush="Black"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="לקוחות">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="8*"/>
+                </Grid.RowDefinitions>
+                <TextBox
+                 HorizontalAlignment="Center"                                           
+                 Text=""                  
+                 VerticalAlignment="Center" 
+                 Width="98"
+                 Height="20"
+                 x:Name="TboxCX" TextChanged="TboxCX_TextChanged" Margin="0,0,0,0" Grid.Column="1" Grid.Row="0" 
+                 />
+                <Button Content="רענן" Grid.Column="3"
+                        Grid.Row="0"
+                HorizontalAlignment="Right" 
+                
+                VerticalAlignment="Center"
+                Height="20"
+                Width="98" Background="#FF62E23D" Click="Button_Click"  Margin="0,0,25,0"/>
+                <syncfusion:SfBusyIndicator Name="busyrefreshcx" Content="" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="0" 
+                                    VerticalAlignment="Center" Cursor="AppStarting" AnimationType="Cupertino" Foreground="#FF4CCD10"/>
+                <Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" BorderBrush="Black" 
+        BorderThickness="1,1,1,1" Background="{x:Null}" >
+
+                </Border>
+                <Label Content="עדכון כלובים" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" />
+
+
+                <StackPanel Grid.Row="2" Grid.Column="1" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <syncfusion:ComboBoxAdv Name="sfcb" Height="25" Width="140" 
+                                        ItemsSource="{Binding ToalCagCx}" DisplayMemberPath="CxName"
+                                        Margin="10,0,0,0" FlowDirection="RightToLeft" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" 
+                                        VerticalAlignment="Center" SelectionChanged="sfcb_SelectionChanged" IsEditable="True" IsTextSearchEnabled="True" >
+
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="KeyUp">
+                                    <local:FilterAction/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+
+                        </syncfusion:ComboBoxAdv>
+                        <Label Content="בחירת לקוח" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                               Margin="0,0,5,10" FontSize="16" FontWeight="DemiBold"/>
+
+
+                    </Grid>
+
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--  <TextBox Grid.Column="0" VerticalAlignment="Top" IsReadOnly="True" Width="180" Height="25" 
+                         Margin="10,0,0,0"  
+                          HorizontalAlignment="Left" Background="#FFEEEEEE"/>
+                        <Label Content="כמות כלובים נוכחית:"  Grid.Column="1" HorizontalAlignment="Right" 
+                       VerticalAlignment="Top" Margin="0,0,5,10" FontSize="16" FontWeight="DemiBold"
+                       FlowDirection="RightToLeft"/>-->
+                    </Grid>
+
+                    <Grid Margin="0,25,0,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBox Grid.Column="0" VerticalAlignment="Top" Name="tbunocage" Width="60" Height="25"  PreviewTextInput="NumberValidationTextBox"
+                            Margin="0,0,0,0" Padding="19,0,0,0"  
+                          HorizontalAlignment="Center" Background="#ffffff"  MaxLength="2" FontSize="16" FontWeight="Bold" />
+
+                    </Grid>
+                    <Grid Margin="0,25,0,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Width="60" FlowDirection="RightToLeft" Content="עדכן" Grid.Column="0" HorizontalAlignment="Center" 
+                                FontWeight="Bold" FontSize="16" Background="#FF62E23D" Click="Button_Click_1" Height="25" Margin="8,0" VerticalAlignment="Top"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.RowSpan="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="הזנת לקוח"  Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                               Margin="0,0,10,0" FontSize="16" FontWeight="DemiBold"/>
+                        <TextBox  VerticalAlignment="Top" x:Name="tbcxupdate" Width="130" Height="25"  FlowDirection="RightToLeft"
+                         Margin="30,0,0,0"  Padding="5,0,0,2"
+                          HorizontalAlignment="Left" Background="#ffffff" FontSize="14" FontWeight="Bold"/>
+                    </Grid>
+
+
+                    <Button x:Name="btnupdatecx" FlowDirection="RightToLeft" Content="עדכן" Grid.Column="0" Grid.ColumnSpan="2"
+                                FontWeight="Bold" FontSize="16" Background="#FF62E23D" Click="btn_update_cx" Margin="64,0,0,0"
+                                HorizontalAlignment="Left" Width="60" Height="25" VerticalAlignment="Top"/>
+
+
+                </StackPanel>
+                <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" BorderBrush="Black" 
+        BorderThickness="1,1,1,1" Background="{x:Null}" />
+                <Label Content="הוספת לקוח" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"  VerticalAlignment="Center"/>
+
+                <syncfusion:SfDataGrid Name="sfdg_cx" Grid.Column="2"
+                                       Grid.Row="1"
+                                       Grid.RowSpan="3"
+                                       Grid.ColumnSpan="2" AllowTriStateSorting="True"  ShowGroupDropArea="True" ColumnSizer="Star" FlowDirection="RightToLeft" 
+                                       ItemsSource="{Binding TotalCageCx}" Margin="0,0,10,0" AllowFiltering="True">
+
+                    <syncfusion:SfDataGrid.Columns>
+                        <syncfusion:GridTextColumn MappingName="CxId" 
+                                   HeaderText="מזהה לקוח"
+                                   TextAlignment="Left"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridTextColumn MappingName="CxName" 
+                                   HeaderText="לקוח"
+                                   TextAlignment="Left"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="TotalCages" 
+                                   HeaderText="כלובים בשטח"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+
+                    </syncfusion:SfDataGrid.Columns>
+                    <syncfusion:SfDataGrid.TableSummaryRows >
+                        <syncfusion:GridTableSummaryRow Title="  סהכ לקוחות: {NumOfCage}   כמות כלובים בשטח: {TotalCageSum}   "  ShowSummaryInRow="True" >
+                            <syncfusion:GridSummaryRow.SummaryColumns >
+
+
+                                <syncfusion:GridSummaryColumn Name="NumOfCage"
+                                                Format="'{Count:d}'"
+                                                MappingName="CxName"
+                                                SummaryType="CountAggregate" />
+                                <syncfusion:GridSummaryColumn Name="TotalCageSum"
+                                                Format="'{Sum:d}'"
+                                                MappingName="TotalCages"
+                                                SummaryType="Int32Aggregate" />
+
+                            </syncfusion:GridSummaryRow.SummaryColumns>
+                        </syncfusion:GridTableSummaryRow>
+
+                    </syncfusion:SfDataGrid.TableSummaryRows>
+                </syncfusion:SfDataGrid>
+
+
+                <Button Grid.Column="0" Content="הדפס"
+                        Name="btnprintcx"
+                        HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Width="75" Click="btnprintcx_Click"/>
+                <Label Content="מחובר כ:" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Right" Margin="0,0,0,0"
+                       VerticalAlignment="Top" FontWeight="Bold" FontSize="16" />
+                <TextBlock x:Name="logonusercxsreen"  Text="" Grid.Column="3" FlowDirection="RightToLeft" HorizontalAlignment="Center" 
+                           VerticalAlignment="Top"  FontSize="14" Margin="50,5,0,0"/>
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="תמחיר כלובים">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <syncfusion:SfDataGrid FlowDirection="RightToLeft" Grid.Column="0" Name="sfcagecalc" ItemsSource="{Binding CageAudit}"
+                                       Grid.Row="1" Grid.RowSpan="7"
+                                       Grid.ColumnSpan="5" ColumnSizer="Star" ShowGroupDropArea="True" 
+                                       AllowFiltering="True" AllowTriStateSorting="True" Margin="0,0,10,0">
+                    <syncfusion:SfDataGrid.Columns>
+                        <syncfusion:GridTextColumn MappingName="CxId" 
+                                   HeaderText="מזהה לקוח"
+                                   TextAlignment="Left"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridTextColumn MappingName="Cx" 
+                                   HeaderText="לקוח"
+                                   TextAlignment="Left"  
+                                   VerticalAlignment="Center" 
+                                              />
+                        <syncfusion:GridTextColumn MappingName="Sector" 
+                                   HeaderText="איזור"
+                                   TextAlignment="Center"  
+                                                   
+                                   VerticalAlignment="Center" 
+                                              />
+                        <syncfusion:GridDateTimeColumn MappingName="Date" 
+                                   HeaderText="תאריך"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"
+                                               Pattern="ShortDate"/>
+                        <syncfusion:GridDateTimeColumn MappingName="Time" 
+                                   HeaderText="שעה"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" Pattern="ShortTime"/>
+                        <syncfusion:GridTextColumn MappingName="Contractor" 
+                                   HeaderText="מבצע"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="User" 
+                                   HeaderText="נהג"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="Status" 
+                                   HeaderText="מצב"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center"/>
+                        <syncfusion:GridTextColumn MappingName="NumOfCage" 
+                                   HeaderText="מס כלובים"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" />
+                        <syncfusion:GridNumericColumn MappingName="CagePrice" 
+                                   HeaderText="מחיר לכלוב"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="False"/>
+                        <syncfusion:GridCurrencyColumn CurrencyDecimalDigits="1"  CurrencySymbol="₪"  MappingName="TotalCageCost" 
+                                   HeaderText="סהכ לאיסוף" 
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="False"/>
+                        <syncfusion:GridTextColumn MappingName="Lan" 
+                                   HeaderText="קו רוחב"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+                        <syncfusion:GridTextColumn MappingName="Lon" 
+                                   HeaderText="קו אורך"
+                                   TextAlignment="Center"  
+                                   VerticalAlignment="Center" IsHidden="True"/>
+
+                    </syncfusion:SfDataGrid.Columns>
+                    <syncfusion:SfDataGrid.TableSummaryRows >
+                        <syncfusion:GridTableSummaryRow Title="  סהכ(כללי):  {TotalCageCost}    מס איסופים: {NumOfCage}   כמות כלובים: {TotalCageSum}   "  ShowSummaryInRow="True" >
+                            <syncfusion:GridSummaryRow.SummaryColumns >
+                                <syncfusion:GridSummaryColumn Name="TotalCageCost"
+                                                Format="'{Sum:c}'"
+                                                MappingName="TotalCageCost"
+                                                SummaryType="DoubleAggregate" />
+
+                                <syncfusion:GridSummaryColumn Name="NumOfCage"
+                                                Format="'{Count:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="CountAggregate" />
+                                <syncfusion:GridSummaryColumn Name="TotalCageSum"
+                                                Format="'{Sum:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="Int32Aggregate" />
+
+                            </syncfusion:GridSummaryRow.SummaryColumns>
+                        </syncfusion:GridTableSummaryRow>
+                    </syncfusion:SfDataGrid.TableSummaryRows>
+                    <syncfusion:SfDataGrid.GroupSummaryRows>
+                        <syncfusion:GridSummaryRow Title=" סהכ: {TotalCageCost}    מס איסופים: {NumOfCage}   כמות כלובים: {TotalCageSum}   "  ShowSummaryInRow="True">
+                            <syncfusion:GridSummaryRow.SummaryColumns>
+                                <syncfusion:GridSummaryColumn Name="TotalCageCost"
+                                                Format="'{Sum:c}'"
+                                                MappingName="TotalCageCost"
+                                                SummaryType="DoubleAggregate" />
+
+                                <syncfusion:GridSummaryColumn Name="NumOfCage"
+                                                Format="'{Count:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="CountAggregate" />
+                                <syncfusion:GridSummaryColumn Name="TotalCageSum"
+                                                Format="'{Sum:d}'"
+                                                MappingName="NumOfCage"
+                                                SummaryType="Int32Aggregate" />
+                            </syncfusion:GridSummaryRow.SummaryColumns>
+                        </syncfusion:GridSummaryRow>
+
+                    </syncfusion:SfDataGrid.GroupSummaryRows>
+
+                </syncfusion:SfDataGrid>
+                <Button Content="רענן" Grid.Column="5"
+                        Grid.Row="0"
+                HorizontalAlignment="Right" 
+              
+                VerticalAlignment="Center"
+                Height="20"
+                        
+                Width="98" Background="#FF62E23D" Click="Button_Click"  Margin="0,0,10,0"/>
+                <syncfusion:SfBusyIndicator Name="busyrefreshcagecost" Content="" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" Margin="0,0,0,0"  
+                                    VerticalAlignment="Center" Cursor="AppStarting" AnimationType="Cupertino" Foreground="#FF4CCD10"/>
+                <TextBox
+                 HorizontalAlignment="Left"                                           
+                 Text=""                  
+                 VerticalAlignment="Center" 
+                 Width="98"
+                 Height="20"
+                 x:Name="TBoxCageCost" TextChanged="TBoxCageCost_TextChanged" Margin="0,0,0,0" Grid.Column="1" Grid.Row="0" 
+                 />
+                <Button Grid.Column="0" Content="הדפס"
+                        Name="btnprintcagecost" Grid.Row="0"
+                        HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="75" 
+                         Click="btnprintcagecost_Click"/>
+                <StackPanel Grid.Row="0" Grid.Column="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+
+                        </Grid.ColumnDefinitions>
+                        <Label Content="מחובר כ:" FlowDirection="RightToLeft"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,5,0" 
+                               HorizontalAlignment="Right" FontWeight="Bold" FontSize="16"/>
+                        <TextBlock Text="" Name="logonuser" Grid.Column="0" Grid.Row="0" Margin="100,0,0,0"
+                                   FlowDirection="RightToLeft" 
+                                   HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="14"/>
+                    </Grid>
+
+                </StackPanel>
+            </Grid>
+
+
+        </TabItem>
+    </TabControl>
+</Window>

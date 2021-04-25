@@ -1,0 +1,23 @@
+﻿<Window x:Class="HashtilCagesMap.AlertBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HashtilCagesMap"
+        mc:Ignorable="d"
+        Title="שגיאה" Height="150" Width="300" FlowDirection="RightToLeft" Icon="Picture/warning.png" WindowStartupLocation="CenterScreen">
+    <Border>
+    <StackPanel>
+            <TextBlock x:Name="tb" Text="שגיאה !" HorizontalAlignment="Center"  FlowDirection="RightToLeft" Margin="0,20,0,0" FontWeight="Bold" FontSize="14" >
+                
+            </TextBlock >
+            <Grid Margin="0,45,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="בסדר" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Right" Margin="0,0,15,0" Background="#FFEE8A8A" Click="Button_Click"/>
+            </Grid>
+    </StackPanel>
+    </Border>
+</Window>
