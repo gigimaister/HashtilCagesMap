@@ -2,6 +2,7 @@
 using HashtilCagesMap.HttpReq;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 
 namespace HashtilCagesMap
@@ -63,14 +64,16 @@ namespace HashtilCagesMap
             try
             {
                 var LoginUsersList = await LoginHttp.UserLoginCheck(username.Text, password.Password);
-                if (LoginUsersList.Count == 1)
+                //var LoginUsersList = 1;
+
+                if (LoginUsersList.FirstOrDefault().UserLevel == 1)
                 {
                     try
                     {
-                        ul.UserId = LoginUsersList[0].UserId;
-                        ul.UserName = LoginUsersList[0].UserName;
-                        ul.UserNickName = LoginUsersList[0].UserNickName;
-                        ul.UserLevel = LoginUsersList[0].UserLevel;
+                        ul.UserId = 1;
+                        ul.UserName = LoginUsersList.FirstOrDefault().UserName;
+                        ul.UserNickName = LoginUsersList.FirstOrDefault().UserNickName;
+                        ul.UserLevel = LoginUsersList.FirstOrDefault().UserLevel;
                         MainWindow mw = new MainWindow();
                         mw.logonuser.Text = ul.UserNickName;
                         mw.txtblkmap.Text = ul.UserNickName;
@@ -93,8 +96,9 @@ namespace HashtilCagesMap
                     loginsfbi.IsBusy = false;
                 }
             }
-            catch(Exception)
+            catch(Exception f)
             {
+                Console.WriteLine(f.Message);
                 invaliduser.Text = "שם משתמש ו/או סיסמא לא נכונים!";
                 loginsfbi.IsBusy = false;
             }
